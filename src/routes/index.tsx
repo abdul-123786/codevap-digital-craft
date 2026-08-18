@@ -1,24 +1,73 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { lazy, Suspense } from "react";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+import { Preloader } from "@/components/Preloader";
+import { Navbar } from "@/components/Navbar";
+import { Hero } from "@/components/Hero";
+import { Marquee } from "@/components/Marquee";
+import { Intro } from "@/components/Intro";
+import { Services } from "@/components/Services";
+import { Portfolio } from "@/components/Portfolio";
+import { Technologies } from "@/components/Technologies";
+import { WhyCodevap } from "@/components/WhyCodevap";
+import { Process } from "@/components/Process";
+import { Trust } from "@/components/Trust";
+import { Testimonials } from "@/components/Testimonials";
+import { CTA } from "@/components/CTA";
+import { Contact } from "@/components/Contact";
+import { Footer } from "@/components/Footer";
+import { WhatsAppFab } from "@/components/WhatsAppFab";
+
+const CustomCursor = lazy(() =>
+  import("@/components/CustomCursor").then((m) => ({ default: m.CustomCursor })),
+);
+
+const TITLE = "CODEVAP — Digital Experiences That Move Business";
+const DESCRIPTION =
+  "CODEVAP builds high-performance websites, web applications, e-commerce platforms and digital experiences designed to help businesses grow.";
+
 export const Route = createFileRoute("/")({
-  component: Index,
+  component: Home,
+  head: () => ({
+    meta: [
+      { title: TITLE },
+      { name: "description", content: DESCRIPTION },
+      { property: "og:title", content: TITLE },
+      { property: "og:description", content: DESCRIPTION },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "/" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: TITLE },
+      { name: "twitter:description", content: DESCRIPTION },
+    ],
+    links: [{ rel: "canonical", href: "/" }],
+  }),
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+function Home() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <>
+      <Preloader />
+      <Suspense fallback={null}>
+        <CustomCursor />
+      </Suspense>
+      <Navbar />
+      <main>
+        <Hero />
+        <Marquee />
+        <Intro />
+        <Services />
+        <Portfolio />
+        <Technologies />
+        <WhyCodevap />
+        <Process />
+        <Trust />
+        <Testimonials />
+        <CTA />
+        <Contact />
+      </main>
+      <Footer />
+      <WhatsAppFab />
+    </>
   );
 }

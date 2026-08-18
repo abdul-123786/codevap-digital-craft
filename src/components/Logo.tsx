@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import logo from "@/assets/codevap-logo.png";
+import logo from "@/assets/codevap-logo-dark.png";
 import { EASE } from "@/lib/motion";
 
 export function Logo({ compact = false }: { compact?: boolean }) {

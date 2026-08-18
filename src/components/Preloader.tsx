@@ -1,6 +1,6 @@
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useEffect, useState } from "react";
-import logo from "@/assets/codevap-logo.png";
+import logo from "@/assets/codevap-logo-dark.png";
 import { EASE } from "@/lib/motion";
 
 export function Preloader() {

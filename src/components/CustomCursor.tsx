@@ -24,7 +24,7 @@ export function CustomCursor() {
       const el = (e.target as HTMLElement | null)?.closest?.(
         "[data-cursor], a, button, input, textarea, select",
       ) as HTMLElement | null;
-      const flag = el?.dataset?.cursor;
+      const flag = el?.dataset?.["cursor"];
       setMode(flag === "project" ? "project" : el ? "link" : "default");
     };
     window.addEventListener("pointermove", onMove, { passive: true });

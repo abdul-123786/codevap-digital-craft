@@ -6,7 +6,7 @@ import { budgets, contact, projectTypes } from "@/data/site";
 import { contactSchema, type ContactInput } from "@/lib/contact.functions";
 import { submitContact } from "@/lib/contact.functions";
 
-type Errors = Partial<Record<keyof ContactInput, string>> & { form?: string };
+type Errors = { [K in keyof ContactInput]?: string | undefined } & { form?: string | undefined };
 
 const empty: ContactInput = {
   name: "",
@@ -262,7 +262,7 @@ function Field({
 }: {
   label: string;
   id: string;
-  error?: string;
+  error?: string | undefined;
   children: React.ReactNode;
 }) {
   return (

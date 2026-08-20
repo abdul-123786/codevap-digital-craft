@@ -17,13 +17,6 @@ export function Founders() {
   const isDesktop = useMediaQuery("(min-width: 1024px)");
   const pinned = isDesktop && !reduced;
 
-  const trackRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: trackRef,
-    offset: ["start start", "end end"],
-  });
-  const shift = -((founders.length - 1) / founders.length) * 100;
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", `${shift}%`]);
 
   return (
     <section

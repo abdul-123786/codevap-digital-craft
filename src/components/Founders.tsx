@@ -92,12 +92,7 @@ function PinnedFounders({ onOpen }: { onOpen: (f: Founder) => void }) {
   );
 }
 
-        </div>
-      )}
 
-      <FounderModal founder={active} onClose={() => setActive(null)} />
-    </section>
-  );
 }
 
 function FounderCard({

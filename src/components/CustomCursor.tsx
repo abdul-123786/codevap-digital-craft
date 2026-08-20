@@ -2,7 +2,7 @@ import { motion, useMotionValue, useReducedMotion, useSpring } from "framer-moti
 import { useEffect, useState } from "react";
 import { useFinePointer } from "@/hooks/useMediaQuery";
 
-type Mode = "default" | "link" | "project";
+type Mode = "default" | "link" | "project" | "founder";
 
 /** Desktop-only decorative cursor. Native cursor stays enabled for accessibility. */
 export function CustomCursor() {
@@ -25,7 +25,9 @@ export function CustomCursor() {
         "[data-cursor], a, button, input, textarea, select",
       ) as HTMLElement | null;
       const flag = el?.dataset?.["cursor"];
-      setMode(flag === "project" ? "project" : el ? "link" : "default");
+      setMode(
+        flag === "project" ? "project" : flag === "founder" ? "founder" : el ? "link" : "default",
+      );
     };
     window.addEventListener("pointermove", onMove, { passive: true });
     return () => window.removeEventListener("pointermove", onMove);
@@ -33,7 +35,7 @@ export function CustomCursor() {
 
   if (!enabled) return null;
 
-  const size = mode === "project" ? 88 : mode === "link" ? 44 : 14;
+  const size = mode === "project" ? 88 : mode === "founder" ? 72 : mode === "link" ? 44 : 14;
 
   return (
     <motion.div
@@ -49,14 +51,18 @@ export function CustomCursor() {
           marginLeft: -size / 2,
           marginTop: -size / 2,
           backgroundColor:
-            mode === "project" ? "var(--primary)" : mode === "link" ? "transparent" : "var(--primary)",
+            mode === "project" || mode === "founder"
+              ? "var(--primary)"
+              : mode === "link"
+                ? "transparent"
+                : "var(--primary)",
           opacity: mode === "default" ? 0.9 : 1,
         }}
         transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
       >
-        {mode === "project" && (
+        {(mode === "project" || mode === "founder") && (
           <span className="font-display text-[0.55rem] font-bold tracking-[0.14em] text-primary-foreground">
-            VIEW →
+            {mode === "founder" ? "MEET" : "VIEW →"}
           </span>
         )}
       </motion.div>

@@ -17,7 +17,7 @@ const words = [
 
 export function Intro() {
   return (
-    <section id="about" className="container-x py-24 lg:py-36">
+    <section id="intro" className="container-x py-24 lg:py-36">
       <Reveal className="eyebrow">01 / What We Do</Reveal>
 
       <Reveal delay={0.05} className="mt-8 max-w-2xl">

@@ -53,25 +53,45 @@ export function Founders() {
       </span>
 
       {pinned ? (
-        <div ref={trackRef} style={{ height: `${founders.length * 100}vh` }} className="relative">
-          <div className="sticky top-0 flex h-screen items-center overflow-hidden">
-            <motion.div
-              className="flex"
-              style={{ x, width: `${founders.length * 100}vw` }}
-            >
-              {founders.map((f, i) => (
-                <div key={f.id} className="flex w-screen shrink-0 items-center px-6 lg:px-16">
-                  <FounderCard founder={f} index={i} onOpen={() => setActive(f)} />
-                </div>
-              ))}
-            </motion.div>
-          </div>
-        </div>
+        <PinnedFounders onOpen={setActive} />
       ) : (
         <div className="container-x grid gap-10 py-16 sm:grid-cols-2">
           {founders.map((f, i) => (
             <FounderCard key={f.id} founder={f} index={i} onOpen={() => setActive(f)} stacked />
           ))}
+        </div>
+      )}
+
+      <FounderModal founder={active} onClose={() => setActive(null)} />
+    </section>
+  );
+}
+
+/** Desktop-only: vertical scroll drives horizontal founder movement. */
+function PinnedFounders({ onOpen }: { onOpen: (f: Founder) => void }) {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: trackRef,
+    offset: ["start start", "end end"],
+  });
+  const shift = -((founders.length - 1) / founders.length) * 100;
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", `${shift}%`]);
+
+  return (
+    <div ref={trackRef} style={{ height: `${founders.length * 100}vh` }} className="relative">
+      <div className="sticky top-0 flex h-screen items-center overflow-hidden">
+        <motion.div className="flex" style={{ x, width: `${founders.length * 100}vw` }}>
+          {founders.map((f, i) => (
+            <div key={f.id} className="flex w-screen shrink-0 items-center px-6 lg:px-16">
+              <FounderCard founder={f} index={i} onOpen={() => onOpen(f)} />
+            </div>
+          ))}
+        </motion.div>
+      </div>
+    </div>
+  );
+}
+
         </div>
       )}
 

@@ -49,12 +49,15 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
+  useSmoothScroll();
+
   return (
     <>
       <Preloader />
       <Suspense fallback={null}>
         <CustomCursor />
       </Suspense>
+      <ScrollProgress />
       <Navbar />
       <main>
         <Hero />
@@ -62,7 +65,9 @@ function Home() {
         <Intro />
         <Services />
         <Portfolio />
+        <Founders />
         <Technologies />
+        <About />
         <WhyCodevap />
         <Process />
         <Trust />
@@ -70,6 +75,7 @@ function Home() {
         <CTA />
         <Contact />
       </main>
+
       <Footer />
       <WhatsAppFab />
     </>

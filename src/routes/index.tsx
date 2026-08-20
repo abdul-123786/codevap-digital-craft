@@ -3,12 +3,15 @@ import { lazy, Suspense } from "react";
 
 import { Preloader } from "@/components/Preloader";
 import { Navbar } from "@/components/Navbar";
+import { ScrollProgress } from "@/components/ScrollProgress";
 import { Hero } from "@/components/Hero";
 import { Marquee } from "@/components/Marquee";
 import { Intro } from "@/components/Intro";
 import { Services } from "@/components/Services";
 import { Portfolio } from "@/components/Portfolio";
+import { Founders } from "@/components/Founders";
 import { Technologies } from "@/components/Technologies";
+import { About } from "@/components/About";
 import { WhyCodevap } from "@/components/WhyCodevap";
 import { Process } from "@/components/Process";
 import { Trust } from "@/components/Trust";
@@ -17,6 +20,7 @@ import { CTA } from "@/components/CTA";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { WhatsAppFab } from "@/components/WhatsAppFab";
+import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 
 const CustomCursor = lazy(() =>
   import("@/components/CustomCursor").then((m) => ({ default: m.CustomCursor })),
@@ -45,12 +49,15 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
+  useSmoothScroll();
+
   return (
     <>
       <Preloader />
       <Suspense fallback={null}>
         <CustomCursor />
       </Suspense>
+      <ScrollProgress />
       <Navbar />
       <main>
         <Hero />
@@ -58,7 +65,9 @@ function Home() {
         <Intro />
         <Services />
         <Portfolio />
+        <Founders />
         <Technologies />
+        <About />
         <WhyCodevap />
         <Process />
         <Trust />
@@ -66,6 +75,7 @@ function Home() {
         <CTA />
         <Contact />
       </main>
+
       <Footer />
       <WhatsAppFab />
     </>

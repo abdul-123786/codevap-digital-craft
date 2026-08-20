@@ -186,8 +186,8 @@ function FounderModal({ founder, onClose }: { founder: Founder | null; onClose: 
         'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
       );
       if (nodes.length === 0) return;
-      const first = nodes[0];
-      const last = nodes[nodes.length - 1];
+      const first = nodes[0]!;
+      const last = nodes[nodes.length - 1]!;
       if (e.shiftKey && document.activeElement === first) {
         e.preventDefault();
         last.focus();

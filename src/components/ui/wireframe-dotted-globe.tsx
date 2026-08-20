@@ -47,8 +47,8 @@ export default function RotatingEarth({ width = 800, height = 600, className = "
       let inside = false
 
       for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
-        const [xi, yi] = polygon[i]
-        const [xj, yj] = polygon[j]
+        const [xi, yi] = polygon[i] as [number, number]
+        const [xj, yj] = polygon[j] as [number, number]
 
         if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) {
           inside = !inside
@@ -209,7 +209,7 @@ export default function RotatingEarth({ width = 800, height = 600, className = "
     }
 
     // Set up rotation and interaction
-    const rotation = [0, 0]
+    const rotation: [number, number] = [0, 0]
     let autoRotate = true
     const rotationSpeed = 0.5
 
@@ -228,7 +228,7 @@ export default function RotatingEarth({ width = 800, height = 600, className = "
       autoRotate = false
       const startX = event.clientX
       const startY = event.clientY
-      const startRotation = [...rotation]
+      const startRotation: [number, number] = [...rotation]
 
       const handleMouseMove = (moveEvent: MouseEvent) => {
         const sensitivity = 0.5

@@ -20,10 +20,17 @@ export function Process() {
         <Reveal className="eyebrow">06 / Process</Reveal>
         <Reveal delay={0.05}>
           <h2 className="mt-4 font-display text-3xl leading-[1.05] font-bold tracking-tight sm:text-5xl lg:text-6xl">
-            FROM IDEA
-            <br />
-            TO <span className="text-primary">LAUNCH.</span>
+            OUR <span className="text-primary">APPROACH.</span>
           </h2>
+        </Reveal>
+
+        <Reveal delay={0.1} className="mt-6 max-w-2xl">
+          <p className="text-muted-foreground leading-relaxed sm:text-lg">
+            We don't start with a template. We start by understanding <strong className="text-foreground font-medium">what your business needs to achieve</strong>, then turn that requirement into a practical digital solution.
+            <br className="hidden sm:block" />
+            <br className="hidden sm:block" />
+            <strong className="text-foreground font-bold text-primary">CODEVAP — Technology built around your business.</strong>
+          </p>
         </Reveal>
 
         <div ref={ref} className="relative mt-16 pl-10 sm:pl-16">

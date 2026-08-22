@@ -1,9 +1,10 @@
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Logo } from "@/components/Logo";
 import { navLinks } from "@/data/site";
 import { EASE } from "@/lib/motion";
+import { useTheme } from "@/components/ThemeProvider";
 
 const mobileLinks = [{ label: "Home", href: "#top" }, ...navLinks, { label: "Contact", href: "#contact" }];
 
@@ -11,6 +12,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const reduced = useReducedMotion();
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -77,6 +79,14 @@ export function Navbar() {
               </a>
               <button
                 type="button"
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                aria-label="Toggle theme"
+                className="grid h-11 w-11 place-items-center rounded-sm border border-border transition-colors hover:bg-surface"
+              >
+                {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+              </button>
+              <button
+                type="button"
                 onClick={() => setOpen(true)}
                 aria-label="Open menu"
                 className="grid h-11 w-11 place-items-center rounded-sm border border-border md:hidden"
@@ -99,14 +109,24 @@ export function Navbar() {
           >
             <div className="container-x flex h-20 items-center justify-between">
               <Logo compact />
-              <button
-                type="button"
-                onClick={() => setOpen(false)}
-                aria-label="Close menu"
-                className="grid h-11 w-11 place-items-center rounded-sm border border-border"
-              >
-                <X className="h-4 w-4" aria-hidden="true" />
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                  aria-label="Toggle theme"
+                  className="grid h-11 w-11 place-items-center rounded-sm border border-border transition-colors hover:bg-surface"
+                >
+                  {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setOpen(false)}
+                  aria-label="Close menu"
+                  className="grid h-11 w-11 place-items-center rounded-sm border border-border"
+                >
+                  <X className="h-4 w-4" aria-hidden="true" />
+                </button>
+              </div>
             </div>
             <nav aria-label="Mobile" className="container-x flex flex-1 flex-col justify-center">
               <ul className="space-y-1">

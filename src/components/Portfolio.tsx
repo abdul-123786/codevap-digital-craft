@@ -1,17 +1,29 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Reveal } from "@/components/Reveal";
 import { projects, type Project } from "@/data/site";
 import { EASE, viewportOnce } from "@/lib/motion";
 
-function ProjectMedia({ project }: { project: Project }) {
+function ProjectMedia({ project, full }: { project: Project; full?: boolean }) {
   const [failed, setFailed] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "center center"],
+  });
+  
+  const width = useTransform(scrollYProgress, [0, 1], ["75%", "100%"]);
 
   return (
-    <div className="relative aspect-4/3 w-full overflow-hidden rounded-sm border border-border bg-surface-2">
+    <motion.div 
+      ref={ref}
+      style={full ? { width, margin: "0 auto" } : {}}
+      className={`relative w-full overflow-hidden rounded-sm border border-border bg-surface-2 ${full ? 'max-w-none' : ''}`}
+    >
       {failed ? (
-        <div className="flex h-full w-full items-center justify-center">
+        <div className="flex aspect-4/3 w-full items-center justify-center">
           <span className="eyebrow">{project.category}</span>
         </div>
       ) : (
@@ -23,7 +35,7 @@ function ProjectMedia({ project }: { project: Project }) {
           width={1280}
           height={960}
           onError={() => setFailed(true)}
-          className="h-full w-full object-cover"
+          className="h-auto w-full object-cover bg-background"
           initial={{ scale: 1.05, opacity: 0 }}
           whileInView={{ scale: 1, opacity: 1 }}
           viewport={viewportOnce}
@@ -31,7 +43,7 @@ function ProjectMedia({ project }: { project: Project }) {
         />
       )}
       <div aria-hidden="true" className="absolute inset-0 bg-background/20 transition-opacity duration-500 group-hover:opacity-0" />
-    </div>
+    </motion.div>
   );
 }
 
@@ -110,11 +122,11 @@ export function Portfolio() {
         {projects.map((p) => {
           const full = p.layout === "full";
           return (
-            <article key={p.id} className="group container-x" data-cursor="project">
+            <article key={p.id} className={`group ${full ? 'w-full px-0' : 'container-x'}`} data-cursor="project">
               {full ? (
                 <div className="space-y-8">
-                  <ProjectMedia project={p} />
-                  <div className="grid gap-8 lg:grid-cols-[1fr_1.1fr]">
+                  <ProjectMedia project={p} full />
+                  <div className="container-x grid gap-8 lg:grid-cols-[1fr_1.1fr]">
                     <ProjectInfo project={p} />
                   </div>
                 </div>

@@ -21,7 +21,7 @@ export function Founders() {
   return (
     <section
       id="founders"
-      className="relative overflow-hidden border-t border-border bg-background"
+      className="relative border-t border-border bg-background"
     >
       <div className="container-x pt-24 lg:pt-32">
         <motion.div
@@ -74,11 +74,15 @@ function PinnedFounders({ onOpen }: { onOpen: (f: Founder) => void }) {
     target: trackRef,
     offset: ["start start", "end end"],
   });
+  
+  const trackHeight = founders.length * 100 + 100; // 100vh buffer for reading
   const shift = -((founders.length - 1) / founders.length) * 100;
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", `${shift}%`]);
+  
+  // Pause slightly at the start (0 to 0.05) and rest at the end (0.85 to 1.0)
+  const x = useTransform(scrollYProgress, [0.05, 0.85], ["0%", `${shift}%`]);
 
   return (
-    <div ref={trackRef} style={{ height: `${founders.length * 100}vh` }} className="relative">
+    <div ref={trackRef} style={{ height: `${trackHeight}vh` }} className="relative">
       <div className="sticky top-0 flex h-screen items-center overflow-hidden">
         <motion.div className="flex" style={{ x, width: `${founders.length * 100}vw` }}>
           {founders.map((f, i) => (
@@ -90,9 +94,6 @@ function PinnedFounders({ onOpen }: { onOpen: (f: Founder) => void }) {
       </div>
     </div>
   );
-}
-
-
 }
 
 function FounderCard({
@@ -267,8 +268,7 @@ function FounderModal({ founder, onClose }: { founder: Founder | null; onClose: 
               <div className="p-6 sm:p-8">
                 <div className="flex items-start justify-between gap-4">
                   <div>
-                    <p className="eyebrow">Founder</p>
-                    <h3 className="mt-2 font-display text-2xl font-bold tracking-tight sm:text-3xl">
+                    <h3 className="font-display text-2xl font-bold tracking-tight sm:text-3xl">
                       {founder.name}
                     </h3>
                     <p className="mt-1 text-xs tracking-[0.18em] text-primary uppercase">

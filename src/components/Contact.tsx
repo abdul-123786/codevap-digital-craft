@@ -2,7 +2,7 @@ import { useServerFn } from "@tanstack/react-start";
 import { ArrowRight, Check, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { Reveal } from "@/components/Reveal";
-import { budgets, contact, projectTypes } from "@/data/site";
+import { budgets, contact, projectTypes, timelines } from "@/data/site";
 import { contactSchema, type ContactInput } from "@/lib/contact.functions";
 import { submitContact } from "@/lib/contact.functions";
 
@@ -15,6 +15,7 @@ const empty: ContactInput = {
   company: "",
   projectType: "",
   budget: "",
+  timeline: "",
   message: "",
 };
 
@@ -44,15 +45,51 @@ export function Contact() {
       setErrors(next);
       return;
     }
-    setState("loading");
-    try {
-      await send({ data: parsed.data });
-      setState("success");
-      setValues(empty);
-    } catch {
-      setState("idle");
-      setErrors({ form: "Something went wrong. Please email us instead." });
-    }
+    
+    const data = parsed.data;
+    const now = new Date();
+    const dateStr = now.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" });
+    
+    const text = `*🚀 New Project Request — CODEVAP*
+
+Hello CODEVAP Team 👋
+
+I would like to discuss a new project with CODEVAP.
+
+*👤 CLIENT DETAILS*
+
+• *Name:* ${data.name}
+• *Email:* ${data.email}
+• *Phone:* ${data.phone || 'Not provided'}
+• *Company:* ${data.company || 'Not provided'}
+
+*💻 PROJECT DETAILS*
+
+• *Project Type:* ${data.projectType}
+• *Estimated Budget:* ${data.budget}
+• *Expected Timeline:* ${data.timeline}
+
+*📝 PROJECT REQUIREMENT*
+
+${data.message}
+
+I would like to discuss the project requirements, scope, timeline, and development process with the CODEVAP team.
+
+Please contact me using the details provided above.
+
+Thank you,
+*${data.name}*
+
+━━━━━━━━━━━━━━━━━━
+
+*📌 Submitted via:* CODEVAP Website
+*🕐 Submitted on:* ${dateStr}`;
+
+    const whatsappUrl = `https://wa.me/918248452433?text=${encodeURIComponent(text)}`;
+    window.open(whatsappUrl, '_blank');
+    
+    setState("success");
+    setValues(empty);
   }
 
   return (
@@ -153,7 +190,7 @@ export function Contact() {
                   maxLength={30}
                   autoComplete="tel"
                   className={field}
-                  placeholder="+00 00000 00000"
+                  placeholder="+91 99999 99999"
                 />
               </Field>
               <Field label="Company (optional)" error={errors.company} id="company">
@@ -198,6 +235,23 @@ export function Contact() {
                   {budgets.map((b) => (
                     <option key={b} value={b}>
                       {b}
+                    </option>
+                  ))}
+                </select>
+              </Field>
+              <Field label="Expected Timeline" error={errors.timeline} id="timeline">
+                <select
+                  id="timeline"
+                  name="timeline"
+                  value={values.timeline}
+                  onChange={set("timeline")}
+                  aria-invalid={Boolean(errors.timeline)}
+                  className={field}
+                >
+                  <option value="">Select…</option>
+                  {timelines.map((t) => (
+                    <option key={t} value={t}>
+                      {t}
                     </option>
                   ))}
                 </select>

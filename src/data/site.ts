@@ -1,6 +1,6 @@
 import work01 from "@/assets/work-01.jpg";
 import work02 from "@/assets/work-02.jpg";
-import work03 from "@/assets/work-03.jpg";
+import work03 from "@/assets/daya-creatives.png";
 import work04 from "@/assets/work-04.jpg";
 import work05 from "@/assets/work-05.jpg";
 import work06 from "@/assets/work-06.jpg";
@@ -13,8 +13,8 @@ import work06 from "@/assets/work-06.jpg";
 export const contact = {
   // TODO: replace with real CODEVAP contact details before launch.
   email: "hello@codevap.example",
-  phone: "+00 00000 00000",
-  whatsapp: "", // e.g. "919999999999" — leave empty to hide the WhatsApp button
+  phone: "+91 82484 52433",
+  whatsapp: "+91 82484 52433", // e.g. "919999999999" — leave empty to hide the WhatsApp button
   location: "Remote — India",
   socials: [
     { label: "Instagram", href: "#" },
@@ -34,43 +34,33 @@ export const navLinks = [
 export const services = [
   {
     id: "01",
-    title: "Web Development",
-    description: "Business websites and high-performance web experiences.",
+    title: "Business Websites",
+    description: "Professional websites that establish your brand and generate enquiries.",
+    examples: ["Landing Pages", "Corporate Websites", "Portfolio Websites", "Service Websites"],
   },
   {
     id: "02",
     title: "Web Applications",
-    description: "Scalable applications built around real business workflows.",
+    description: "Custom platforms, dashboards, portals, and business tools built around your workflow.",
+    examples: ["Dashboards", "Portals", "Management Systems", "SaaS Platforms"],
   },
   {
     id: "03",
     title: "E-Commerce",
-    description: "Conversion-focused online stores and marketplaces.",
+    description: "Online stores with product management, payments, orders, and the systems behind them.",
+    examples: ["B2C", "B2B", "Multi-Vendor", "Custom Commerce"],
   },
   {
     id: "04",
-    title: "Mobile Applications",
-    description: "Modern mobile experiences designed for customers on the move.",
+    title: "Custom Software",
+    description: "Software designed specifically to solve your operational and business problems.",
+    examples: ["Business Systems", "Admin Panels", "Internal Tools", "Custom Platforms"],
   },
   {
     id: "05",
-    title: "UI / UX Design",
-    description: "Interfaces that balance usability, clarity and visual identity.",
-  },
-  {
-    id: "06",
-    title: "Admin Systems",
-    description: "Powerful dashboards and internal management platforms.",
-  },
-  {
-    id: "07",
-    title: "SEO & Performance",
-    description: "Fast, discoverable and technically optimized websites.",
-  },
-  {
-    id: "08",
-    title: "Maintenance & Support",
-    description: "Continuous improvements, monitoring and technical support.",
+    title: "Automation & Integrations",
+    description: "Connect your tools, reduce repetitive work, and automate important business processes.",
+    examples: ["APIs", "Payment Gateways", "Third-Party Services", "Business Automation"],
   },
 ];
 
@@ -113,15 +103,15 @@ export const projects: Project[] = [
   },
   {
     id: "03",
-    title: "Multi-Vendor Marketplace",
-    category: "Platform",
+    title: "Daya Creatives",
+    category: "Creative Agency",
     description:
-      "Vendor onboarding, payouts and moderation designed as one operational system.",
-    technologies: ["React", "Express", "PostgreSQL", "Redis"],
-    outcome: "Vendor operations consolidated into one dashboard.",
+      "Premium fashion, web development, eCommerce solutions, and creative services platform.",
+    technologies: ["React.js", "Node.js", "Tailwind", "RazorPay", "Cloudinary", "Express.js", "MongoDB"],
+    outcome: "A high-end digital presence unifying diverse creative services.",
     image: work03,
-    href: "#contact",
-    layout: "full",
+    href: "https://dayacreatives.com/",
+    layout: "left",
   },
   {
     id: "04",
@@ -133,7 +123,7 @@ export const projects: Project[] = [
     outcome: "Manual coordination replaced with a single source of truth.",
     image: work04,
     href: "#contact",
-    layout: "split",
+    layout: "right",
   },
   {
     id: "05",
@@ -181,46 +171,44 @@ export const technologies = [
 export const principles = [
   {
     id: "01",
-    title: "Built For Business",
-    description:
-      "We focus on measurable business outcomes, not just visual appearance.",
+    title: "Built Around Your Business",
+    description: "Every business works differently. We understand your requirements first and build the solution around your actual workflow, customers, and goals.",
+    summary: "Your business → Your requirements → Your solution",
   },
   {
     id: "02",
-    title: "Engineered For Speed",
-    description: "Fast interfaces, optimized assets and scalable architecture.",
+    title: "Quality Code. Real Performance.",
+    description: "We care about what happens behind the screen too. Fast interfaces, clean architecture, responsive experiences, secure integrations, and reliable backend systems are part of every project.",
+    summary: "Clean code · Fast performance · Reliable systems",
   },
   {
     id: "03",
-    title: "Designed To Scale",
-    description: "Systems that can evolve as your business grows.",
+    title: "Ready To Grow",
+    description: "Your first version shouldn't become your biggest limitation. We build systems with a strong foundation so new features, users, products, integrations, and business requirements can be added as you grow.",
+    summary: "Build today → Improve tomorrow → Scale when ready",
   },
   {
     id: "04",
-    title: "One Digital Partner",
-    description:
-      "Design, development, deployment and ongoing support under one roof.",
-  },
+    title: "One Team From Start To Finish",
+    description: "No need to manage multiple teams for design, development, and deployment. CODEVAP brings the complete process together — from planning and UI/UX to development, testing, deployment, and support.",
+    summary: "Plan · Design · Build · Launch · Support",
+  }
 ];
 
 export const process = [
-  { id: "01", title: "Discover", description: "Understand the business, users and goals." },
-  {
-    id: "02",
-    title: "Plan",
-    description: "Define architecture, user journeys and project scope.",
-  },
-  { id: "03", title: "Design", description: "Create the visual system and user experience." },
-  { id: "04", title: "Build", description: "Engineer the product with scalable technology." },
-  {
-    id: "05",
-    title: "Test",
-    description: "Performance, security, responsiveness and quality testing.",
-  },
-  { id: "06", title: "Launch", description: "Deploy, monitor and continuously improve." },
+  { id: "01", title: "Understand", description: "We start by understanding what your business needs to achieve." },
+  { id: "02", title: "Design", description: "Create the visual system and user experience." },
+  { id: "03", title: "Build", description: "Engineer the product with practical, scalable technology." },
+  { id: "04", title: "Launch", description: "Deploy, monitor and ensure everything works perfectly." },
+  { id: "05", title: "Improve", description: "Continuous improvements and iteration based on real usage." },
 ];
 
-export const audiences = ["Startups", "Small Businesses", "Growing Brands", "Enterprise Teams"];
+export const audiences = [
+  { title: "Startups", description: "From idea to launch — websites, MVPs, applications, and complete digital products." },
+  { title: "Small Businesses", description: "Build a professional online presence and replace manual processes with better digital systems." },
+  { title: "Growing Brands", description: "Upgrade your website, launch e-commerce, build custom platforms, and support your next stage of growth." },
+  { title: "Established Businesses", description: "Modernize existing systems, connect your tools, automate workflows, and build new digital capabilities." }
+];
 
 /** TODO: replace placeholders with verified numbers. Nothing is published as a claim. */
 export const metrics = [
@@ -249,4 +237,11 @@ export const budgets = [
   "₹50K – ₹1L",
   "₹1L – ₹3L",
   "₹3L+",
+];
+
+export const timelines = [
+  "Immediate",
+  "1-2 Months",
+  "3-6 Months",
+  "6-12 Months",
 ];

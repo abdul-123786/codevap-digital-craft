@@ -7,7 +7,7 @@ export function WhatsAppFab() {
 
   return (
     <a
-      href={`https://wa.me/${encodeURIComponent(contact.whatsapp)}`}
+      href={`https://wa.me/${contact.whatsapp.replace(/\D/g, "")}`}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat with us on WhatsApp"

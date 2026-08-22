@@ -8,6 +8,7 @@ export const contactSchema = z.object({
   company: z.string().trim().max(120).optional().or(z.literal("")),
   projectType: z.string().trim().min(1, "Select a project type").max(60),
   budget: z.string().trim().min(1, "Select a budget range").max(60),
+  timeline: z.string().trim().min(1, "Select a timeline").max(60),
   message: z.string().trim().min(10, "Tell us a little more").max(1000),
 });
 
@@ -18,7 +19,7 @@ export type ContactInput = z.infer<typeof contactSchema>;
  * No secrets are read; wire an email/CRM provider inside the handler when available.
  */
 export const submitContact = createServerFn({ method: "POST" })
-  .inputValidator((data: unknown) => contactSchema.parse(data))
+  .validator((data: unknown) => contactSchema.parse(data))
   .handler(async ({ data }) => {
     console.info("[contact] enquiry received", {
       projectType: data.projectType,

@@ -51,6 +51,22 @@
   --container: 1280px;
 }
 
+:root.light {
+  color-scheme: light;
+  --background: oklch(0.99 0 0); /* #FDFDFD */
+  --surface: oklch(0.97 0 0); /* #F4F4F4 */
+  --surface-2: oklch(0.94 0 0); /* #EAEAEA */
+  --foreground: oklch(0.14 0 0); /* #050505 */
+  --muted: oklch(0.92 0 0);
+  --muted-foreground: oklch(0.40 0 0); /* Darker gray for contrast on light mode */
+  --primary: oklch(0.606 0.191 143.2); /* #0EB131 (Premium Green) */
+  --primary-foreground: oklch(1 0 0); /* White */
+  --border: oklch(0 0 0 / 10%); /* Black border with 10% opacity */
+  --border-strong: oklch(0 0 0 / 18%);
+  --destructive: oklch(0.63 0.21 25);
+  --glow: oklch(0.606 0.191 143.2 / 20%);
+}
+
 @layer base {
   * {
     border-color: var(--border);
@@ -134,6 +150,7 @@
 
 @utility green-glow {
   background: radial-gradient(circle at center, var(--glow), transparent 70%);
+  filter: blur(140px);
 }
 
 @utility text-balance-tight {

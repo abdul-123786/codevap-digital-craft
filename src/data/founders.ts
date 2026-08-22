@@ -32,7 +32,7 @@ export const founders: Founder[] = [
     responsibilities: ["Strategy & positioning", "Client relationships", "Delivery oversight"],
     social: [
       { label: "LinkedIn", href: "https://www.linkedin.com/in/vinoth-kumar-s-73697b3a7/" },
-      { label: "Instagram", href: "#" },
+      { label: "Instagram", href: "https://www.instagram.com/codevap_technology/" },
     ],
   },
   {
@@ -60,7 +60,7 @@ export const founders: Founder[] = [
     responsibilities: ["Strategy & positioning", "Client relationships", "Delivery oversight"],
     social: [
       { label: "LinkedIn", href: "https://www.linkedin.com/in/meenakshi-s-092829372/" },
-      { label: "Instagram", href: "#" },
+      { label: "Instagram", href: "https://www.instagram.com/codevap_technology/" },
     ],
   },
 ];

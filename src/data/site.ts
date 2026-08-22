@@ -17,7 +17,7 @@ export const contact = {
   whatsapp: "+91 82484 52433", // e.g. "919999999999" — leave empty to hide the WhatsApp button
   location: "Remote — India",
   socials: [
-    { label: "Instagram", href: "#" },
+    { label: "Instagram", href: "https://www.instagram.com/codevap_technology/" },
     { label: "LinkedIn", href: "#" },
     { label: "GitHub", href: "#" },
   ],
